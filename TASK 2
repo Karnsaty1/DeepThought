@@ -1,0 +1,99 @@
+Introduction
+This API provides endpoints for creating, managing, and viewing nudges, which are notifications related to events.
+
+Endpoints
+1. Create Nudge
+Method: POST
+Endpoint: /nudgesRequest Body:
+
+JSON
+{
+  "event_id": "<event_id>",
+  "title": "Nudge Title",
+  "image_url": "https://example.com/image.jpg",
+  "scheduled_time": "2024-09-26T15:44:29Z",
+  "description": "Nudge Description",
+  "one_line_invitation": "There's a great workshop on Reflections that's about to happen. Swipe right to check it out."
+}
+Use code with caution.
+
+Response:
+
+JSON
+{
+  "id": "<nudge_id>",
+  "message": "Nudge created successfully"
+}
+Use code with caution.
+
+2. Get Nudges for an Event
+Method: GET
+Endpoint: /events/<event_id>/nudgesResponse:
+
+JSON
+[
+  {
+    "id": "<nudge_id>",
+    "title": "Nudge Title",
+    "image_url": "https://example.com/image.jpg",
+    "scheduled_time": "2024-09-26T15:44:29Z",
+    "description": "Nudge Description",
+    "one_line_invitation": "There's a great workshop on Reflections that's about to happen. Swipe right to check it out."
+  },
+  // ... more nudges
+]
+Use code with caution.
+
+3. Update Nudge
+Method: PUT
+Endpoint: /nudges/<nudge_id>Request Body:
+
+JSON
+{
+  "title": "Updated Nudge Title",
+  "image_url": "https://example.com/new_image.jpg",
+  "scheduled_time": "2024-10-01T10:00:00Z",
+  "description": "Updated Nudge Description",
+  "one_line_invitation": "Updated one-line invitation"
+}
+Use code with caution.
+
+Response:
+
+JSON
+{
+  "message": "Nudge updated successfully"
+}
+Use code with caution.
+
+4. Delete Nudge
+Method: DELETE
+Endpoint: /nudges/<nudge_id>Response:
+
+JSON
+{
+  "message": "Nudge deleted successfully"
+}
+Use code with caution.
+
+Data Model
+Nudge {
+  id: string,
+  event_id: string,
+  title: string,
+  image_url: string,
+  scheduled_time: datetime,
+  description: string,
+  one_line_invitation: string
+}
+Error Handling
+400 Bad Request: If the request body is invalid or missing required fields.
+404 Not Found: If the requested nudge or event is not found.
+500 Internal Server Error: If there's an error on the server side.
+Authentication
+[Optional] Implement authentication using a suitable method (e.g., API key, OAuth) to protect sensitive data and restrict access.
+Additional Considerations
+Pagination: For large numbers of nudges, consider implementing pagination to avoid overwhelming clients.
+Webhooks: Provide a webhook endpoint for clients to receive notifications when nudges are created, updated, or deleted.
+Rate Limiting: Implement rate limiting to prevent abuse and ensure fair usage.
+Testing: Thoroughly test your API to ensure it functions correctly and handles various scenarios.
